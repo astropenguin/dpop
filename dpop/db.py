@@ -1,5 +1,6 @@
 # public items
-__all__ = ['LAMDA']
+__all__ = ['DataBase',
+           'LAMDA']
 
 # standard library
 import re
@@ -21,8 +22,26 @@ h = constants.h
 k = constants.k_B
 
 
-# classes
-class LAMDA(object):
+class DataBase(object):
+    def __init__(self, molname):
+        self.molname = molname
+
+    @staticmethod
+    def _skip_lines(f, pattern):
+        pattern = re.compile(pattern)
+
+        line = ''
+        while not pattern.search(line):
+            line = f.readline()
+
+        return f
+
+    def __repr__(self):
+        classname = self.__class__.__name__
+        return f'{classname}({self.molname})'
+
+
+class LAMDA(DataBase):
     available = list(CONFIG['lamda_mol'].keys())
 
     def __init__(self, molname, *, encoding='utf-8'):
@@ -35,9 +54,10 @@ class LAMDA(object):
                 f.write(data.read().decode(encoding))
 
         with path.open('r') as f:
-            self.molname = molname
             self.energy_levels = self._get_energy_levels(f)
             self.transitions = self._get_transitions(f)
+
+        super().__init__(molname)
 
     def Z(self, T_ex):
         if not isinstance(T_ex, u.Quantity):
@@ -102,16 +122,3 @@ class LAMDA(object):
             transitions[key] = val
 
         return transitions
-
-    @staticmethod
-    def _skip_lines(f, pattern):
-        pattern = re.compile(pattern)
-
-        line = ''
-        while not pattern.search(line):
-            line = f.readline()
-
-        return f
-
-    def __repr__(self):
-        return f'LAMDA({self.molname})'
