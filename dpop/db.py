@@ -45,6 +45,8 @@ class LAMDA(DataBase):
     available = list(CONFIG['lamda_mol'].keys())
 
     def __init__(self, molname, *, encoding='utf-8'):
+        super().__init__(molname)
+
         mol = CONFIG['lamda_mol'][molname]
         path = Path(mol)
 
@@ -56,8 +58,6 @@ class LAMDA(DataBase):
         with path.open('r') as f:
             self.energy_levels = self._get_energy_levels(f)
             self.transitions = self._get_transitions(f)
-
-        super().__init__(molname)
 
     def Z(self, T_ex):
         if not isinstance(T_ex, u.Quantity):
