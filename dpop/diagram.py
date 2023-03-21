@@ -90,8 +90,8 @@ class _PopDiagram(object):
         N_u_error = N_u * I_b_error/I_b
 
         # calc. x and y of y=a+bx
-        x = d['E_u'].value
-        y = np.log10((N_u/d['g_u']).value)
+        x = self.db.energy_levels[upper_level]['energy'].value
+        y = np.log10((N_u/self.db.energy_levels[upper_level]['weight']).value)
         y_error = (N_u_error/N_u/np.log(10)).value
         x_label = '{}({}-{})'.format(self.db.molname, upper_level, lower_level)
         self.x = np.append(self.x, x)
