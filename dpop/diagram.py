@@ -133,7 +133,7 @@ class _PopDiagram(object):
         self.T_ex, self.T_ex_error = T_ex*u.K, T_ex_error*u.K
 
         # calc. N_tot and its error
-        elem_1 = self.db.Z_diff(self.T_ex) * self.T_ex_error
+        elem_1 = self.db.dZdT(self.T_ex) * self.T_ex_error
         elem_2 = self.db.Z(self.T_ex) * np.log(10) * self.a_error
         N_tot = self.db.Z(self.T_ex) * 10**a
         N_tot_error = np.sqrt(elem_1**2 + elem_2**2) * 10**a
