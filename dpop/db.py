@@ -16,7 +16,7 @@ from astropy import constants
 from astropy import units as u
 
 # module constants
-CONFIG = yaml.load(get_data('dpop', 'data/config.yaml'))
+CONFIG = yaml.safe_load(get_data('dpop', 'data/config.yaml'))
 c = constants.c
 h = constants.h
 k = constants.k_B
