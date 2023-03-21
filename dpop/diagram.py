@@ -165,7 +165,7 @@ class _PopDiagram(object):
         plt.errorbar(self.x, self.y, yerr=self.y_error, fmt='o')
 
         # cosmetics
-        plt.title('Population Diagram of {}'.format(self.db.mol))
+        plt.title('Population Diagram of {}'.format(self.db.molname))
         for i in range(len(self.x)):
             plt.annotate(self.x_label[i], (self.x[i], self.y[i]),
                 xytext=(3, 3), textcoords='offset points')
@@ -178,12 +178,12 @@ class _PopDiagram(object):
         # show or save figure
         if savefig:
             print('saving the resulting plot...')
-            plt.savefig('popdiagram-{}.{}'.format(self.db.mol, extension))
+            plt.savefig('popdiagram-{}.{}'.format(self.db.molname, extension))
         else:
             plt.show()
 
     def __repr__(self):
-        return 'PopDiagram({})'.format(self.db.mol)
+        return 'PopDiagram({})'.format(self.db.molname)
 
     def __str__(self):
-        return 'PopDiagram({})'.format(self.db.mol)
+        return 'PopDiagram({})'.format(self.db.molname)
