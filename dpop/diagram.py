@@ -92,7 +92,7 @@ class _PopDiagram(object):
         x = d['E_u'].value
         y = np.log10((N_u/d['g_u']).value)
         y_error = (N_u_error/N_u/np.log(10)).value
-        x_label = '{}({}-{})'.format(self.db.mol, upper_level, lower_level)
+        x_label = '{}({}-{})'.format(self.db.molname, upper_level, lower_level)
         self.x = np.append(self.x, x)
         self.y = np.append(self.y, y)
         self.y_error = np.append(self.y_error, y_error)
