@@ -84,7 +84,7 @@ class _PopDiagram(object):
         if type(I_b_error) != u.quantity.Quantity:
             I_b_error *= u.K * u.km / u.s
 
-        d = self.db(upper_level, lower_level)
+        d = self.db.transitions[(upper_level, lower_level)]
         N_u = (8*pi*k/(h*c**3) * d['f_rest']**2/d['A_ul'] * I_b).to(u.cm**(-2))
         N_u_error = N_u * I_b_error/I_b
 
