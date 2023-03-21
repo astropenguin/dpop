@@ -15,6 +15,7 @@ from astropy import constants
 c = constants.c
 h = constants.h
 k = constants.k_B
+pi = np.pi
 
 
 class PopDiagram(OrderedDict):
